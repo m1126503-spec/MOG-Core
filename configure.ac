@@ -32,10 +32,17 @@ AC_CANONICAL_HOST
 dnl Keep the grouped archive list as a configure substitution so Automake does
 dnl not mistake the GNU ld flags for linker flags in mog_tx_LDADD.
 case $host_os in
-  linux*) MOG_TX_LINK_GROUP='-Wl,--start-group,libraven_common.a,libraven_server.a,libraven_wallet.a,libraven_zmq.a,libraven_util.a,libraven_consensus.a,crypto/libraven_crypto.a,leveldb/libleveldb.a,leveldb/libleveldb_sse42.a,leveldb/libmemenv.a,univalue/.libs/libunivalue.a,--end-group' ;;
-  *) MOG_TX_LINK_GROUP= ;;
+  linux*)
+    MOG_TX_LINK_GROUP_START='-Wl,--start-group'
+    MOG_TX_LINK_GROUP_END='-Wl,--end-group'
+    ;;
+  *)
+    MOG_TX_LINK_GROUP_START=
+    MOG_TX_LINK_GROUP_END=
+    ;;
 esac
-AC_SUBST([MOG_TX_LINK_GROUP])
+AC_SUBST([MOG_TX_LINK_GROUP_START])
+AC_SUBST([MOG_TX_LINK_GROUP_END])
 
 AH_TOP([#ifndef RAVEN_CONFIG_H])
 AH_TOP([#define RAVEN_CONFIG_H])
