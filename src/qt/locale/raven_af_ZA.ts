@@ -379,8 +379,8 @@
         <translation>&amp;Opsies</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>

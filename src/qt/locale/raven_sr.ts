@@ -62,12 +62,12 @@
         <translation>Adresa za primanje</translation>
     </message>
     <message>
-        <source>These are your Raven addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ovo su vase Ravencoin adrese za slanje. Uvek proverite iznos i adresu primaoca pre slanja novcica.</translation>
+        <source>These are your MOG addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ovo su vase MOGcoin adrese za slanje. Uvek proverite iznos i adresu primaoca pre slanja novcica.</translation>
     </message>
     <message>
-        <source>These are your Raven addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Ovo su vase Ravencoin adrese za prijem.  Preporucljivo je da za svaki prijem novcica kreirate novu adresu za prijem.</translation>
+        <source>These are your MOG addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Ovo su vase MOGcoin adrese za prijem.  Preporucljivo je da za svaki prijem novcica kreirate novu adresu za prijem.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,7 +172,7 @@
         <translation>Novčanik enkriptovan</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ravens from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your mogs from being stolen by malware infecting your computer.</source>
         <translation>%1 će se zatvoriti kako bi se završio proces enkripcije.
 Zapamtite da enkripcija vašeg novčanika ne može u potpunosti zaštititi vaša sredstva od krađe ukoliko je vaš računar kompromitovan računarskim virusom ili drugim oblicima malicioznog softvera.</translation>
     </message>
@@ -504,8 +504,8 @@ Zapamtite da enkripcija vašeg novčanika ne može u potpunosti zaštititi vaša
         <translation>Промени &amp;лозинку...</translation>
     </message>
     <message>
-        <source>Send coins to a Raven address</source>
-        <translation>Пошаљите новац на raven адресу</translation>
+        <source>Send coins to a MOG address</source>
+        <translation>Пошаљите новац на mog адресу</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>

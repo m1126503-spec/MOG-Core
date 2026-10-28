@@ -47,7 +47,7 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** Raven unit definitions. Encapsulates parsing and formatting
+/** MOG unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
 class RavenUnits: public QAbstractListModel
@@ -57,14 +57,14 @@ class RavenUnits: public QAbstractListModel
 public:
     explicit RavenUnits(QObject *parent);
 
-    /** Raven units.
+    /** MOG units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
     {
-        RVN,
-        mRVN,
-        uRVN
+        MOG,
+        mMOG,
+        uMOG
     };
 
     enum SeparatorStyle

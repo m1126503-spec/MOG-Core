@@ -58,7 +58,7 @@ UniValue getinfo(const JSONRPCRequest& request)
             "  \"version\": xxxxx,           (numeric) the server version\n"
             "  \"protocolversion\": xxxxx,   (numeric) the protocol version\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total Ravencoin balance of the wallet\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total MOGcoin balance of the wallet\n"
             "  \"blocks\": xxxxxx,           (numeric) the current number of blocks processed in the server\n"
             "  \"timeoffset\": xxxxx,        (numeric) the time offset\n"
             "  \"connections\": xxxxx,       (numeric) the number of connections\n"
@@ -728,7 +728,7 @@ UniValue getaddressmempool(const JSONRPCRequest& request)
             "[\n"
             "  {\n"
             "    \"address\"  (string) The base58check encoded address\n"
-            "    \"assetName\"  (string) The name of the associated asset (RVN for Ravencoin)\n"
+            "    \"assetName\"  (string) The name of the associated asset (MOG for MOGcoin)\n"
             "    \"txid\"  (string) The related txid\n"
             "    \"index\"  (number) The related input or output index\n"
             "    \"satoshis\"  (number) The difference of satoshis\n"
@@ -814,13 +814,13 @@ UniValue getaddressutxos(const JSONRPCRequest& request)
             "      ,...\n"
             "    ],\n"
             "  \"chainInfo\",  (boolean, optional, default false) Include chain info with results\n"
-            "  \"assetName\"   (string, optional) Get UTXOs for a particular asset instead of RVN ('*' for all assets).\n"
+            "  \"assetName\"   (string, optional) Get UTXOs for a particular asset instead of MOG ('*' for all assets).\n"
             "}\n"
             "\nResult\n"
             "[\n"
             "  {\n"
             "    \"address\"  (string) The address base58check encoded\n"
-            "    \"assetName\" (string) The asset associated with the UTXOs (RVN for Ravencoin)\n"
+            "    \"assetName\" (string) The asset associated with the UTXOs (MOG for MOGcoin)\n"
             "    \"txid\"  (string) The output txid\n"
             "    \"height\"  (number) The block height\n"
             "    \"outputIndex\"  (number) The output index\n"
@@ -881,8 +881,8 @@ UniValue getaddressutxos(const JSONRPCRequest& request)
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Unknown address type");
         }
 
-        std::string assetNameOut = "RVN";
-        if (assetName != "RVN") {
+        std::string assetNameOut = "MOG";
+        if (assetName != "MOG") {
             CAmount _amount;
             if (!GetAssetInfoFromScript(it->second.script, assetNameOut, _amount)) {
                 throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't decode asset script");
@@ -928,12 +928,12 @@ UniValue getaddressdeltas(const JSONRPCRequest& request)
             "  \"start\" (number) The start block height\n"
             "  \"end\" (number) The end block height\n"
             "  \"chainInfo\" (boolean) Include chain info in results, only applies if start and end specified\n"
-            "  \"assetName\"   (string, optional) Get deltas for a particular asset instead of RVN.\n"
+            "  \"assetName\"   (string, optional) Get deltas for a particular asset instead of MOG.\n"
             "}\n"
             "\nResult:\n"
             "[\n"
             "  {\n"
-            "    \"assetName\"  (string) The asset associated with the deltas (RVN for Ravencoin)\n"
+            "    \"assetName\"  (string) The asset associated with the deltas (MOG for MOGcoin)\n"
             "    \"satoshis\"  (number) The difference of satoshis\n"
             "    \"txid\"  (string) The related txid\n"
             "    \"index\"  (number) The related input or output index\n"
@@ -1074,7 +1074,7 @@ UniValue getaddressbalance(const JSONRPCRequest& request)
             "OR\n"
             "[\n"
             "  {\n"
-            "    \"assetName\"  (string) The asset associated with the balance (RVN for Ravencoin)\n"
+            "    \"assetName\"  (string) The asset associated with the balance (MOG for MOGcoin)\n"
             "    \"balance\"  (string) The current balance in satoshis\n"
             "    \"received\"  (string) The total number of satoshis received (including change)\n"
             "  },...\n"

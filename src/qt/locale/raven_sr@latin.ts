@@ -283,16 +283,16 @@
         <translation>Otvori &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a Raven address</source>
-        <translation>Pošalji novčiće na Raven adresu</translation>
+        <source>Send coins to a MOG address</source>
+        <translation>Pošalji novčiće na MOG adresu</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Proveri poruku...</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -447,8 +447,8 @@
 <context>
     <name>raven-core</name>
     <message>
-        <source>Raven Core</source>
-        <translation>Raven Core</translation>
+        <source>MOG Core</source>
+        <translation>MOG Core</translation>
     </message>
     <message>
         <source>Information</source>

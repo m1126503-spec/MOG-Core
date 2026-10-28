@@ -628,8 +628,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/RavenProject/Ravencoin>";
-    const std::string URL_WEBSITE = "<https://ravencoin.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/m1126503-spec/MOG-Core>";
+    const std::string URL_WEBSITE = "<https://github.com/m1126503-spec/MOG-Core>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -927,7 +927,7 @@ void InitLogging()
     fLogIPs = gArgs.GetBoolArg("-logips", DEFAULT_LOGIPS);
 
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("Raven version %s\n", FormatFullVersion());
+    LogPrintf("MOG version %s\n", FormatFullVersion());
 }
 
 namespace { // Variables internal to initialization process only

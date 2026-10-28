@@ -561,7 +561,7 @@ void CreateAssetDialog::CheckFormState()
 
     if (!(ui->addressText->text().isEmpty() || IsValidDestination(dest)) && assetNameValid) {
         ui->addressText->setStyleSheet(STYLE_INVALID);
-        showMessage(tr("Warning: Invalid Raven address"));
+        showMessage(tr("Warning: Invalid MOG address"));
         return;
     }
 
@@ -583,7 +583,7 @@ void CreateAssetDialog::CheckFormState()
                 return;
             } else if (!IsValidDestination(dest)) {
                 ui->addressText->setStyleSheet(STYLE_INVALID);
-                showMessage(tr("Warning: Invalid Raven address"));
+                showMessage(tr("Warning: Invalid MOG address"));
                 return;
             }
 
@@ -840,7 +840,7 @@ void CreateAssetDialog::onCreateAssetClicked()
     QStringList formatted;
 
     // generate bold amount string
-    QString amount = "<b>" + QString::fromStdString(ValueFromAmountString(GetBurnAmount(type), 8)) + " RVN";
+    QString amount = "<b>" + QString::fromStdString(ValueFromAmountString(GetBurnAmount(type), 8)) + " MOG";
     amount.append("</b>");
     // generate monospace address string
     QString addressburn = "<span style='font-family: monospace;'>" + QString::fromStdString(GetBurnAddress(type));
@@ -1248,7 +1248,7 @@ void CreateAssetDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Raven address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid MOG address"));
         }
         else // Valid address
         {

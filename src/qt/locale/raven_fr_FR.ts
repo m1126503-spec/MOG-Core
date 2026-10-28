@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Choisissez une adresse où envoyer les ravens</translation>
+        <translation>Choisissez une adresse où envoyer les mogs</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Choisissez une adresse où recevoir les ravens</translation>
+        <translation>Choisissez une adresse où recevoir les mogs</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -463,8 +463,8 @@
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically open the Raven client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Ouvrir le port du client Raven automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
+        <source>Automatically open the MOG client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Ouvrir le port du client MOG automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -611,8 +611,8 @@
         <translation>Montant</translation>
     </message>
     <message>
-        <source>Enter a Raven address (e.g. %1)</source>
-        <translation>Entrer une adresse Raven (e.g. %1)</translation>
+        <source>Enter a MOG address (e.g. %1)</source>
+        <translation>Entrer une adresse MOG (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -951,8 +951,8 @@
         <translation>Réindexer les blocs sur le disque...</translation>
     </message>
     <message>
-        <source>Send coins to a Raven address</source>
-        <translation>Envoyer des pièces à une adresse Raven</translation>
+        <source>Send coins to a MOG address</source>
+        <translation>Envoyer des pièces à une adresse MOG</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -971,8 +971,8 @@
         <translation>&amp;Vérification du message</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -999,8 +999,8 @@
         <translation>Crypter les clé privées qui appartiennent votre portefeuille</translation>
     </message>
     <message>
-        <source>Sign messages with your Raven addresses to prove you own them</source>
-        <translation>Signer vos messages avec vos adresses Raven pour prouver que vous les détenez</translation>
+        <source>Sign messages with your MOG addresses to prove you own them</source>
+        <translation>Signer vos messages avec vos adresses MOG pour prouver que vous les détenez</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1011,16 +1011,16 @@
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and raven: URIs)</source>
-        <translation>Demander des paiements (générer QR codes et raven: URIs)</translation>
+        <source>Request payments (generates QR codes and mog: URIs)</source>
+        <translation>Demander des paiements (générer QR codes et mog: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
         <translation>Montrer la liste des adresses d'envois utilisées et les étiquettes</translation>
     </message>
     <message>
-        <source>Open a raven: URI or payment request</source>
-        <translation>Ouvrir un raven: URI ou demande de paiement</translation>
+        <source>Open a mog: URI or payment request</source>
+        <translation>Ouvrir un mog: URI ou demande de paiement</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -1695,8 +1695,8 @@
         <translation>Impossible de démarrer le serveur HTTP. Voir le journal de débogage pour plus de détails.</translation>
     </message>
     <message>
-        <source>Raven Core</source>
-        <translation>Raven Core</translation>
+        <source>MOG Core</source>
+        <translation>MOG Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

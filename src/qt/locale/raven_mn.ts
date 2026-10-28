@@ -347,7 +347,7 @@
         <translation>Оношилгоо ба засварын консолыг онгойлго</translation>
     </message>
     <message>
-        <source>Raven</source>
+        <source>MOG</source>
         <translation>Биткойн</translation>
     </message>
     <message>

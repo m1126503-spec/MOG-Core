@@ -295,8 +295,8 @@
         <translation>Newid y cyfrinymadrodd a ddefnyddiwyd ar gyfer amgryptio'r waled</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -521,8 +521,8 @@
         <translation>Opsiynau:</translation>
     </message>
     <message>
-        <source>Raven Core</source>
-        <translation>Craidd Raven</translation>
+        <source>MOG Core</source>
+        <translation>Craidd MOG</translation>
     </message>
     <message>
         <source>Information</source>

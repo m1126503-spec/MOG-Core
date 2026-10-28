@@ -8,18 +8,18 @@ define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2022)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Raven Core]])
-AC_INIT([Raven Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [test]_CLIENT_VERSION_RC),[https://github.com/RavenProject/Ravencoin/issues],[raven],[https://ravencoin.org/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[MOG Core]])
+AC_INIT([MOG Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [test]_CLIENT_VERSION_RC),[https://github.com/m1126503-spec/MOG-Core/issues],[mog],[https://github.com/m1126503-spec/MOG-Core])
 
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/raven-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-RAVEN_DAEMON_NAME=ravend
-RAVEN_GUI_NAME=raven-qt
-RAVEN_CLI_NAME=raven-cli
-RAVEN_TX_NAME=raven-tx
+RAVEN_DAEMON_NAME=mogd
+RAVEN_GUI_NAME=mog-qt
+RAVEN_CLI_NAME=mog-cli
+RAVEN_TX_NAME=mog-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -28,6 +28,14 @@ if test "x${ARFLAGS+set}" != "xset"; then
 fi
 
 AC_CANONICAL_HOST
+
+dnl Keep the grouped archive list as a configure substitution so Automake does
+dnl not mistake the GNU ld flags for linker flags in mog_tx_LDADD.
+case $host_os in
+  linux*) MOG_TX_LINK_GROUP='-Wl,--start-group,libraven_common.a,libraven_server.a,libraven_wallet.a,libraven_zmq.a,libraven_util.a,libraven_consensus.a,crypto/libraven_crypto.a,leveldb/libleveldb.a,leveldb/libleveldb_sse42.a,leveldb/libmemenv.a,univalue/.libs/libunivalue.a,--end-group' ;;
+  *) MOG_TX_LINK_GROUP= ;;
+esac
+AC_SUBST([MOG_TX_LINK_GROUP])
 
 AH_TOP([#ifndef RAVEN_CONFIG_H])
 AH_TOP([#define RAVEN_CONFIG_H])
@@ -301,13 +309,13 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([cli],
   [AS_HELP_STRING([--with-cli],
-  [build raven-cli (default=yes)])],
+  [build mog-cli (default=yes)])],
   [build_raven_cli=$withval],
   [build_raven_cli=yes])
 
 AC_ARG_WITH([tx],
   [AS_HELP_STRING([--with-tx],
-  [build raven-tx (default=no)])],
+  [build mog-tx (default=no)])],
   [build_raven_tx=$withval],
   [build_raven_tx=no])
 
@@ -319,7 +327,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build ravend daemon (default=yes)])],
+  [build mogd daemon (default=yes)])],
   [build_ravend=$withval],
   [build_ravend=yes])
 
@@ -1066,15 +1074,15 @@ AC_SUBST(UNIVALUE_LIBS)
 
 RAVEN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build ravend])
+AC_MSG_CHECKING([whether to build mogd])
 AM_CONDITIONAL([BUILD_RAVEND], [test x$build_ravend = xyes])
 AC_MSG_RESULT($build_ravend)
 
-AC_MSG_CHECKING([whether to build raven-cli])
+AC_MSG_CHECKING([whether to build mog-cli])
 AM_CONDITIONAL([BUILD_RAVEN_CLI], [test x$build_raven_cli = xyes])
 AC_MSG_RESULT($build_raven_cli)
 
-AC_MSG_CHECKING([whether to build raven-tx])
+AC_MSG_CHECKING([whether to build mog-tx])
 AM_CONDITIONAL([BUILD_RAVEN_TX], [test x$build_raven_tx = xyes])
 AC_MSG_RESULT($build_raven_tx)
 
@@ -1330,8 +1338,8 @@ esac
 
 echo
 echo "Options used to compile and link:"
-echo "  build raven-cli = $build_raven_cli"
-echo "  build raven-tx  = $build_raven_tx"
+echo "  build mog-cli = $build_raven_cli"
+echo "  build mog-tx  = $build_raven_tx"
 echo "  with wallet     = $enable_wallet"
 echo "  with gui / qt   = $raven_enable_qt"
 if test x$raven_enable_qt != xno; then

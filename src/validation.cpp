@@ -65,7 +65,7 @@
 using namespace boost::placeholders;
 
 #if defined(NDEBUG)
-# error "Raven cannot be compiled without assertions."
+# error "MOG cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -126,7 +126,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Raven Signed Message:\n";
+const std::string strMessageMagic = "MOG Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -944,7 +944,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s RVN additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s MOG additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -3329,7 +3329,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         bool flushed = view.Flush();
         assert(flushed);
         nTime4 = GetTimeMicros(); nTimeFlush += nTime4 - nTime3;
-        LogPrint(BCLog::BENCH, "  - Flush RVN: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime4 - nTime3) * MILLI, nTimeFlush * MICRO, nTimeFlush * MILLI / nBlocksTotal);
+        LogPrint(BCLog::BENCH, "  - Flush MOG: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime4 - nTime3) * MILLI, nTimeFlush * MICRO, nTimeFlush * MILLI / nBlocksTotal);
 
         /** RVN START */
         nTimeAssetsFlush = GetTimeMicros();

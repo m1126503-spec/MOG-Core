@@ -10,7 +10,8 @@
 #include "amount.h"
 #include "script/script.h"
 
-static const std::string RVN = "RVN";
+// Keep the legacy internal symbol name; the asset value is the MOG ticker.
+static const std::string RVN = "MOG";
 
 struct CAddressUnspentKey {
     unsigned int type;

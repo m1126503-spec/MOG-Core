@@ -76,7 +76,7 @@ static const std::regex QUALIFIER_INDICATOR("^[#][A-Z0-9._]{3,}$"); // Starts wi
 static const std::regex SUB_QUALIFIER_INDICATOR("^#[A-Z0-9._]+\\/#[A-Z0-9._]+$"); // Starts with #
 static const std::regex RESTRICTED_INDICATOR("^[\\$][A-Z0-9._]{3,}$"); // Starts with $
 
-static const std::regex RAVEN_NAMES("^RVN$|^RAVEN$|^RAVENCOIN$|^#RVN$|^#RAVEN$|^#RAVENCOIN$");
+static const std::regex RAVEN_NAMES("^MOG$|^MOGCHAIN$|^#MOG$|^#MOGCHAIN$|^RVN$|^RAVEN$|^RAVENCOIN$|^#RVN$|^#RAVEN$|^#RAVENCOIN$");
 
 bool IsRootNameValid(const std::string& name)
 {
@@ -917,7 +917,7 @@ bool CTransaction::IsNewAsset() const
     // New Asset transaction will always have at least three outputs.
     // 1. Owner Token output
     // 2. Issue Asset output
-    // 3. RVN Burn Fee
+    // 3. MOG Burn Fee
     if (vout.size() < 3) {
         return false;
     }
@@ -954,7 +954,7 @@ bool CTransaction::IsNewUniqueAsset() const
 //! Call this function after IsNewUniqueAsset
 bool CTransaction::VerifyNewUniqueAsset(std::string& strError) const
 {
-    // Must contain at least 3 outpoints (RVN burn, owner change and one or more new unique assets that share a root (should be in trailing position))
+    // Must contain at least 3 outpoints (MOG burn, owner change and one or more new unique assets that share a root (should be in trailing position))
     if (vout.size() < 3) {
         strError  = "bad-txns-unique-vout-size-to-small";
         return false;
@@ -3107,7 +3107,7 @@ bool CheckIssueBurnTx(const CTxOut& txOut, const AssetType& type)
 
 bool CheckReissueBurnTx(const CTxOut& txOut)
 {
-    // Check the first transaction and verify that the correct RVN Amount
+    // Check the first transaction and verify that the correct MOG amount
     if (txOut.nValue != GetReissueAssetBurnAmount())
         return false;
 
@@ -3872,7 +3872,7 @@ bool CreateAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, const s
     if (!change_address.empty()) {
         CTxDestination destination = DecodeDestination(change_address);
         if (!IsValidDestination(destination)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raven address: ") + change_address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid MOG address: ") + change_address);
             return false;
         }
     } else {
@@ -3914,7 +3914,7 @@ bool CreateAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, const s
 
     CAmount curBalance = pwallet->GetBalance();
 
-    // Check to make sure the wallet has the RVN required by the burnAmount
+    // Check to make sure the wallet has the MOG required by the burnAmount
     if (curBalance < burnAmount) {
         error = std::make_pair(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
         return false;
@@ -4038,7 +4038,7 @@ bool CreateReissueAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, 
 
     // Check that validitity of the address
     if (!IsValidDestinationString(address)) {
-        error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raven address: ") + address);
+        error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid MOG address: ") + address);
         return false;
     }
 
@@ -4046,7 +4046,7 @@ bool CreateReissueAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, 
     if (!change_address.empty()) {
         CTxDestination destination = DecodeDestination(change_address);
         if (!IsValidDestination(destination)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raven address: ") + change_address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid MOG address: ") + change_address);
             return false;
         }
     } else {
@@ -4117,7 +4117,7 @@ bool CreateReissueAssetTransaction(CWallet* pwallet, CCoinControl& coinControl, 
     // Get the current burn amount for issuing an asset
     CAmount burnAmount = GetReissueAssetBurnAmount();
 
-    // Check to make sure the wallet has the RVN required by the burnAmount
+    // Check to make sure the wallet has the MOG required by the burnAmount
     if (curBalance < burnAmount) {
         error = std::make_pair(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
         return false;
@@ -4217,7 +4217,7 @@ bool CreateTransferAssetTransaction(CWallet* pwallet, const CCoinControl& coinCo
     // Check for a balance before processing transfers
     CAmount curBalance = pwallet->GetBalance();
     if (curBalance == 0) {
-        error = std::make_pair(RPC_WALLET_INSUFFICIENT_FUNDS, std::string("This wallet doesn't contain any RVN, transfering an asset requires a network fee"));
+        error = std::make_pair(RPC_WALLET_INSUFFICIENT_FUNDS, std::string("This wallet doesn't contain any MOG; transferring an asset requires a network fee"));
         return false;
     }
 
@@ -4236,7 +4236,7 @@ bool CreateTransferAssetTransaction(CWallet* pwallet, const CCoinControl& coinCo
         int64_t expireTime = transfer.first.nExpireTime;
 
         if (!IsValidDestinationString(address)) {
-            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Raven address: ") + address);
+            error = std::make_pair(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid MOG address: ") + address);
             return false;
         }
         auto currentActiveAssetCache = GetCurrentAssetCache();

@@ -459,8 +459,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -717,8 +717,8 @@
 <context>
     <name>raven-core</name>
     <message>
-        <source>Raven Core</source>
-        <translation>Raven மையம்</translation>
+        <source>MOG Core</source>
+        <translation>MOG மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

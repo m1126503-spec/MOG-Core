@@ -78,7 +78,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     ui->ravenAtStartup->setToolTip(ui->ravenAtStartup->toolTip().arg(tr(PACKAGE_NAME)));
     ui->ravenAtStartup->setText(ui->ravenAtStartup->text().arg(tr(PACKAGE_NAME)));
 
-    ui->openRavenConfButton->setToolTip(ui->openRavenConfButton->toolTip().arg(tr(PACKAGE_NAME)));
+    ui->openMOGConfButton->setToolTip(ui->openMOGConfButton->toolTip().arg(tr(PACKAGE_NAME)));
 
     ui->lang->setToolTip(ui->lang->toolTip().arg(tr(PACKAGE_NAME)));
     ui->lang->addItem(QString("(") + tr("default") + QString(")"), QVariant(""));
@@ -248,7 +248,7 @@ void OptionsDialog::on_ipfsUrlReset_clicked()
     ui->ipfsUrl->setText(DEFAULT_IPFS_VIEWER);
 }
 
-void OptionsDialog::on_openRavenConfButton_clicked()
+void OptionsDialog::on_openMOGConfButton_clicked()
 {
     /* explain the purpose of the config file */
     QMessageBox::information(this, tr("Configuration options"),

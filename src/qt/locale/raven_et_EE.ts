@@ -427,8 +427,8 @@
         <translation>Kõvakettal olevate plokkide reindekseerimine...</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -793,8 +793,8 @@
         <translation>Valikud:</translation>
     </message>
     <message>
-        <source>Raven Core</source>
-        <translation>Raven Core</translation>
+        <source>MOG Core</source>
+        <translation>MOG Core</translation>
     </message>
     <message>
         <source>Information</source>

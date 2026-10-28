@@ -171,7 +171,7 @@ RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *netw
         setCentralWidget(rpcConsole);
     }
 
-    /** RVN START */
+    /** MOG START */
     labelCurrentMarket = new QLabel();
     labelCurrentPrice = new QLabel();
     headerWidget = new QWidget();
@@ -181,7 +181,7 @@ RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *netw
     labelVersionUpdate = new QLabel();
     networkVersionManager = new QNetworkAccessManager();
     versionRequest = new QNetworkRequest();
-    /** RVN END */
+    /** MOG END */
 
     // Accept D&D of URIs
     setAcceptDrops(true);
@@ -335,7 +335,7 @@ void RavenGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/send_selected", ":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Raven address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a MOG address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -366,7 +366,7 @@ void RavenGUI::createActions()
     historyAction->setFont(font);
     tabGroup->addAction(historyAction);
 
-    /** RVN START */
+    /** MOG START */
     createAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_create_selected", ":/icons/asset_create"), tr("&Create Assets"), this);
     createAssetAction->setStatusTip(tr("Create new assets"));
     createAssetAction->setToolTip(createAssetAction->statusTip());
@@ -376,7 +376,7 @@ void RavenGUI::createActions()
     tabGroup->addAction(createAssetAction);
 
     transferAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_transfer_selected", ":/icons/asset_transfer"), tr("&Transfer Assets"), this);
-    transferAssetAction->setStatusTip(tr("Transfer assets to RVN addresses"));
+    transferAssetAction->setStatusTip(tr("Transfer assets to MOG addresses"));
     transferAssetAction->setToolTip(transferAssetAction->statusTip());
     transferAssetAction->setCheckable(true);
     transferAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
@@ -415,7 +415,7 @@ void RavenGUI::createActions()
     restrictedAssetAction->setFont(font);
     tabGroup->addAction(restrictedAssetAction);
 
-    /** RVN END */
+    /** MOG END */
 
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
@@ -474,9 +474,9 @@ void RavenGUI::createActions()
     getMyWordsAction->setStatusTip(tr("Show the recoverywords for this wallet"));
 
     signMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Raven addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your MOG addresses to prove you own them"));
     verifyMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/verify"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Raven addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified MOG addresses"));
 
     openRPCConsoleAction = new QAction(platformStyle->TextColorIcon(":/icons/debugwindow"), tr("&Debug Window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -496,7 +496,7 @@ void RavenGUI::createActions()
 
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Raven command-line options").arg(tr(PACKAGE_NAME)));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible MOG command-line options").arg(tr(PACKAGE_NAME)));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -584,7 +584,7 @@ void RavenGUI::createToolBars()
         QSettings settings;
         bool IconsOnly = settings.value("fToolbarIconsOnly", false).toBool();
 
-        /** RVN START */
+        /** MOG START */
         // Create the background and the vertical tool bar
         QWidget* toolbarWidget = new QWidget();
 
@@ -604,7 +604,7 @@ void RavenGUI::createToolBars()
         }
         labelToolbar->setStyleSheet(".QLabel{background-color: transparent;}");
 
-        /** RVN END */
+        /** MOG END */
 
         m_toolbar = new QToolBar();
         m_toolbar->setStyle(style());
@@ -640,7 +640,7 @@ void RavenGUI::createToolBars()
         stringToUse = normalString;
 #endif
 
-        /** RVN START */
+        /** MOG START */
         QString tbStyleSheet = ".QToolBar {background-color : transparent; border-color: transparent; }  "
                                ".QToolButton {background-color: transparent; border-color: transparent; width: 249px; color: %1; border: none;} "
                                ".QToolButton:checked {background: none; background-color: none; selection-background-color: none; color: %2; border: none; font: %4} "
@@ -703,7 +703,7 @@ void RavenGUI::createToolBars()
         labelCurrentMarket->setAlignment(Qt::AlignVCenter);
         labelCurrentMarket->setStyleSheet(STRING_LABEL_COLOR);
         labelCurrentMarket->setFont(currentMarketFont);
-        labelCurrentMarket->setText(tr("Ravencoin Market Price"));
+        labelCurrentMarket->setText(tr("MOGcoin Market Price"));
 
         QString currentPriceStyleSheet = ".QLabel{color: %1;}";
         labelCurrentPrice->setContentsMargins(25,0,0,0);
@@ -813,7 +813,7 @@ void RavenGUI::createToolBars()
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
         pricingTimer->start(10000);
         getPriceInfo();
-        /** RVN END */
+        /** MOG END */
 
         // Get the latest Ravencoin release and let the user know if they are using the latest version
         // Network request code for the header widget
@@ -1041,14 +1041,14 @@ void RavenGUI::setWalletActionsEnabled(bool enabled)
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
 
-    /** RVN START */
+    /** MOG START */
     transferAssetAction->setEnabled(false);
     createAssetAction->setEnabled(false);
     manageAssetAction->setEnabled(false);
     messagingAction->setEnabled(false);
     votingAction->setEnabled(false);
     restrictedAssetAction->setEnabled(false);
-    /** RVN END */
+    /** MOG END */
 }
 
 void RavenGUI::createTrayIcon(const NetworkStyle *networkStyle)
@@ -1199,7 +1199,7 @@ void RavenGUI::gotoVerifyMessageTab(QString addr)
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
 }
 
-/** RVN START */
+/** MOG START */
 void RavenGUI::gotoAssetsPage()
 {
     transferAssetAction->setChecked(true);
@@ -1223,7 +1223,7 @@ void RavenGUI::gotoRestrictedAssetsPage()
     restrictedAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoRestrictedAssetsPage();
 };
-/** RVN END */
+/** MOG END */
 #endif // ENABLE_WALLET
 
 void RavenGUI::updateNetworkState()
@@ -1242,7 +1242,7 @@ void RavenGUI::updateNetworkState()
     QString tooltip;
 
     if (clientModel->getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to Raven network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to MOG network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";
@@ -1387,7 +1387,7 @@ void RavenGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerif
 
 void RavenGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("Raven"); // default title
+    QString strTitle = tr("MOG"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;
@@ -1413,7 +1413,7 @@ void RavenGUI::message(const QString &title, const QString &message, unsigned in
             break;
         }
     }
-    // Append title to "Raven - "
+    // Append title to "MOG - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 
@@ -1499,7 +1499,7 @@ void RavenGUI::incomingTransaction(const QString& date, int unit, const CAmount&
 {
     // On new transaction, make an info balloon
     QString msg = tr("Date: %1\n").arg(date);
-    if (assetName == "RVN")
+    if (assetName == "MOG")
         msg += tr("Amount: %1\n").arg(RavenUnits::formatWithUnit(unit, amount, true));
     else
         msg += tr("Amount: %1\n").arg(RavenUnits::formatWithCustomName(assetName, amount, MAX_ASSET_UNITS, true));
@@ -1519,7 +1519,7 @@ void RavenGUI::checkAssets()
     // Check that status of RIP2 and activate the assets icon if it is active
     if(AreAssetsDeployed()) {
         transferAssetAction->setDisabled(false);
-        transferAssetAction->setToolTip(tr("Transfer assets to RVN addresses"));
+        transferAssetAction->setToolTip(tr("Transfer assets to MOG addresses"));
         createAssetAction->setDisabled(false);
         createAssetAction->setToolTip(tr("Create new assets"));
         manageAssetAction->setDisabled(false);
@@ -1863,7 +1863,7 @@ void RavenGUI::currencySelectionChanged(int unitIndex)
 /** Triggered when the options model's display currency is updated */
 void RavenGUI::onCurrencyChange(int newIndex)
 {
-    qDebug() << "RavenGUI::onPriceUnitChange: " + QString::number(newIndex);
+    qDebug() << "MOGGUI::onPriceUnitChange: " + QString::number(newIndex);
 
     if(newIndex < 0 || newIndex >= CurrencyUnits::count()){
         return;

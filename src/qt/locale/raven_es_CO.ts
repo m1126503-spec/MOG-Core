@@ -215,8 +215,8 @@
         <translation>Abrir &amp;URL...</translation>
     </message>
     <message>
-        <source>Send coins to a Raven address</source>
-        <translation>Enviando monedas a una dirección de Raven</translation>
+        <source>Send coins to a MOG address</source>
+        <translation>Enviando monedas a una dirección de MOG</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -231,8 +231,8 @@
         <translation>&amp;Verificar Mensaje...</translation>
     </message>
     <message>
-        <source>Raven</source>
-        <translation>Raven</translation>
+        <source>MOG</source>
+        <translation>MOG</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -333,8 +333,8 @@
 <context>
     <name>raven-core</name>
     <message>
-        <source>Raven Core</source>
-        <translation>Raven Core</translation>
+        <source>MOG Core</source>
+        <translation>MOG Core</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

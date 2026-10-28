@@ -1,18 +1,20 @@
-Raven Core integration/staging tree
-=====================================
+MOG Core
+========
 
-https://ravencoin.org
+[![CMake on a single platform](https://github.com/m1126503-spec/MOG-Core/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/m1126503-spec/MOG-Core/actions/workflows/cmake-single-platform.yml)
+
+MOG Core is an experimental blockchain node and wallet based on the Raven Core codebase.
+This repository contains the MOG network parameters, wallet, daemon, and asset support.
 
 To see how to run Ravencoin, please read the respective files in [the doc folder](doc)
 
 
-What is Ravencoin?
+What is MOG?
 ----------------
 
-Ravencoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. The Ravencoin platform also lets anyone create assets (tokens) on the Ravencoin network. 
-Assets can be used for NFTs, STOs, Gift Cards, and fractional ownership of anything of value.
-Ravencoin uses peer-to-peer technology to operate
+MOG is an experimental digital currency that enables peer-to-peer payments. The MOG platform also lets users create assets (tokens) on the MOG network.
+Assets can be used for NFTs and other digital representations of value.
+MOG uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
 out collectively by the network. 
 
@@ -21,15 +23,13 @@ out collectively by the network.
 License
 -------
 
-Raven Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+MOG Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/RavenProject/Ravencoin/tags) are created
-regularly to indicate new official, stable release versions of Raven Core.
+The `main` branch contains an experimental MOG network configuration and is not guaranteed to be stable.
 
 Active development is done in the `develop` branch. 
 

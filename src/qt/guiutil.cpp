@@ -212,7 +212,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Raven address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a MOG address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(GetParams()))));
 #endif
     widget->setValidator(new RavenAddressEntryValidator(parent));
@@ -230,8 +230,8 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseRavenURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no raven: URI
-    if(!uri.isValid() || uri.scheme() != QString("raven"))
+    // return if URI is not valid or is no mog: URI
+    if(!uri.isValid() || uri.scheme() != QString("mog"))
         return false;
 
     SendCoinsRecipient rv;
@@ -271,7 +271,7 @@ bool parseRavenURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!RavenUnits::parse(RavenUnits::RVN, i->second, &rv.amount))
+                if(!RavenUnits::parse(RavenUnits::MOG, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -291,13 +291,13 @@ bool parseRavenURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseRavenURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert raven:// to raven:
+    // Convert mog:// to mog:
     //
-    //    Cannot handle this later, because raven:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because mog:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("raven://", Qt::CaseInsensitive))
+    if(uri.startsWith("mog://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 10, "raven:");
+        uri.replace(0, 6, "mog:");
     }
     QUrl uriInstance(uri);
     return parseRavenURI(uriInstance, out);
@@ -305,12 +305,12 @@ bool parseRavenURI(QString uri, SendCoinsRecipient *out)
 
 QString formatRavenURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("raven:%1").arg(info.address);
+    QString ret = QString("mog:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(RavenUnits::format(RavenUnits::RVN, info.amount, false, RavenUnits::separatorNever));
+        ret += QString("?amount=%1").arg(RavenUnits::format(RavenUnits::MOG, info.amount, false, RavenUnits::separatorNever));
         paramCount++;
     }
 
@@ -602,10 +602,10 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Raven.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "MOG.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Raven (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Raven (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "MOG (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("MOG (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -700,8 +700,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "raven.desktop";
-    return GetAutostartDir() / strprintf("raven-%s.lnk", chain);
+        return GetAutostartDir() / "mog.desktop";
+    return GetAutostartDir() / strprintf("mog-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -745,9 +745,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Raven\n";
+            optionFile << "Name=MOG\n";
         else
-            optionFile << strprintf("Name=Raven (%s)\n", chain);
+            optionFile << strprintf("Name=MOG (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
