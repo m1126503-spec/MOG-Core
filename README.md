@@ -6,6 +6,9 @@ MOG Core
 MOG Core is an experimental blockchain node and wallet based on the Raven Core codebase.
 This repository contains the MOG network parameters, wallet, daemon, and asset support.
 
+To join the network (port 9766, `mog.conf`, no public seeds yet), read [doc/join-network.md](doc/join-network.md).
+Example config: [share/examples/mog.conf](share/examples/mog.conf).
+
 To see how to run Ravencoin, please read the respective files in [the doc folder](doc)
 
 

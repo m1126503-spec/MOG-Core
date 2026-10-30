@@ -38,3 +38,6 @@ jobs:
           ./src/mogd --version
           ./src/mog-cli --version
           ./src/mog-tx --help
+
+      - name: Check genesis on main, testnet, and regtest
+        run: sh contrib/mog-genesis-check.sh
