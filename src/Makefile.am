@@ -537,7 +537,7 @@ endif
 mog_tx_LINK = $(CXX) $(mog_tx_CXXFLAGS) $(CXXFLAGS) $(RELDFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 
 mog_tx_LDADD = \
-  -Wl,--start-group \
+  @MOG_TX_LINK_GROUP_START@ \
   $(LIBRAVEN_COMMON) \
   $(LIBRAVEN_SERVER) \
   $(LIBRAVEN_UTIL) \
@@ -548,7 +548,7 @@ mog_tx_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
-  -Wl,--end-group \
+  @MOG_TX_LINK_GROUP_END@ \
   secp256k1/.libs/libsecp256k1.a
 
 if EMBEDDED_UNIVALUE

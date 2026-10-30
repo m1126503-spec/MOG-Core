@@ -29,6 +29,22 @@ fi
 
 AC_CANONICAL_HOST
 
+dnl Substituted so Automake does not reject -Wl flags in mog_tx_LDADD.
+dnl mog_tx_LINK bypasses libtool, which would otherwise hoist these flags
+dnl out of the archive list and leave the group empty.
+case $host_os in
+  linux*)
+    MOG_TX_LINK_GROUP_START='-Wl,--start-group'
+    MOG_TX_LINK_GROUP_END='-Wl,--end-group'
+    ;;
+  *)
+    MOG_TX_LINK_GROUP_START=
+    MOG_TX_LINK_GROUP_END=
+    ;;
+esac
+AC_SUBST([MOG_TX_LINK_GROUP_START])
+AC_SUBST([MOG_TX_LINK_GROUP_END])
+
 AH_TOP([#ifndef RAVEN_CONFIG_H])
 AH_TOP([#define RAVEN_CONFIG_H])
 AH_BOTTOM([#endif //RAVEN_CONFIG_H])
