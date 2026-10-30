@@ -530,12 +530,16 @@ if TARGET_WINDOWS
 mog_tx_SOURCES += raven-tx-res.rc
 endif
 
+# libtool hoists every -Wl flag out of *_LDADD, so --start-group never wraps
+# these archives and libraven_common's references into libraven_server
+# (AreAssetsDeployed, CAssetsCache, CTransaction::IsNewAsset, ...) stay
+# undefined. Link this one program with the compiler driver directly.
+mog_tx_LINK = $(CXX) $(mog_tx_CXXFLAGS) $(CXXFLAGS) $(RELDFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+
 mog_tx_LDADD = \
-  @MOG_TX_LINK_GROUP_START@ \
+  -Wl,--start-group \
   $(LIBRAVEN_COMMON) \
   $(LIBRAVEN_SERVER) \
-  $(LIBRAVEN_COMMON) \
-  $(LIBUNIVALUE) \
   $(LIBRAVEN_UTIL) \
   $(LIBRAVEN_WALLET) \
   $(LIBRAVEN_ZMQ) \
@@ -544,10 +548,18 @@ mog_tx_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
-  @MOG_TX_LINK_GROUP_END@ \
-  $(LIBSECP256K1)
+  -Wl,--end-group \
+  secp256k1/.libs/libsecp256k1.a
+
+if EMBEDDED_UNIVALUE
+mog_tx_LDADD += univalue/.libs/libunivalue.a
+else
+mog_tx_LDADD += $(UNIVALUE_LIBS)
+endif
 
 mog_tx_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+
+EXTRA_mog_tx_DEPENDENCIES = $(LIBSECP256K1) $(LIBUNIVALUE)
 #
 
 # ravenconsensus library #
