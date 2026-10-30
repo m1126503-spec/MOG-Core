@@ -18,7 +18,7 @@ check_net() {
     pid=$!
     i=0
     while [ "$i" -lt 90 ]; do
-        if grep -q "Loaded best chain" "$dir/console.log" "$dir/debug.log" 2>/dev/null; then
+        if grep -q "nBestHeight = 0" "$dir/console.log" "$dir/debug.log" 2>/dev/null; then
             kill "$pid" 2>/dev/null || true
             wait "$pid" 2>/dev/null || true
             echo "$name: genesis connected"

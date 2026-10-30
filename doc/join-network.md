@@ -14,7 +14,7 @@ MOG is not discovered automatically. Until DNS seeds are published, every node n
 | Программы | `mogd` (нода), `mog-cli` (команды) |
 | Генезис | текст `MOG Chain Genesis - 2026-10-28`; корень Меркла `98e63749…7a7e76` |
 
-CI после сборки запускает `contrib/mog-genesis-check.sh`. Скрипт поднимает `mogd` на main, testnet и regtest и ждёт строку `Loaded best chain`. Если генезис не подключается, сборка красная.
+CI после сборки запускает `contrib/mog-genesis-check.sh`. Скрипт поднимает `mogd` на main, testnet и regtest и ждёт строку `nBestHeight = 0`. Если генезис не подключается, сборка красная.
 
 Первые 1000 блоков (высоты 0–999) считаются алгоритмом X16R. С блока 1000 включается KAWPOW. Время блока на это больше не влияет: старая дата Raven (май 2020) больше не переключает алгоритм.
 
