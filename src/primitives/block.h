@@ -21,6 +21,14 @@
 
 extern uint32_t nKAWPOWActivationTime;
 
+/** First block that uses KAWPOW. Earlier blocks, including genesis, stay X16R. */
+static const uint32_t KAWPOW_ACTIVATION_HEIGHT = 1000;
+
+inline bool IsKAWPOWActivated(uint32_t nHeight)
+{
+    return nHeight >= KAWPOW_ACTIVATION_HEIGHT;
+}
+
 class BlockNetwork
 {
 public:
@@ -64,10 +72,10 @@ public:
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
         READWRITE(nBits);
-        if (nTime < nKAWPOWActivationTime) {
+        READWRITE(nHeight);
+        if (!IsKAWPOWActivated(nHeight)) {
             READWRITE(nNonce);
         } else {
-            READWRITE(nHeight);
             READWRITE(nNonce64);
             READWRITE(mix_hash);
         }

@@ -423,10 +423,9 @@ public:
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
         READWRITE(nBits);
-        if (nTime < nKAWPOWActivationTime) {
+        if (!IsKAWPOWActivated(nHeight)) {
             READWRITE(nNonce);
         } else {
-            //KAWPOW
             READWRITE(nNonce64);
             READWRITE(mix_hash);
         }

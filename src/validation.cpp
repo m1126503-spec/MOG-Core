@@ -3946,7 +3946,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     // If we are checking a KAWPOW block below a know checkpoint height. We can validate the proof of work using the mix_hash
-    if (fCheckPOW && block.nTime >= nKAWPOWActivationTime) {
+    if (fCheckPOW && IsKAWPOWActivated(block.nHeight)) {
         CBlockIndex* pcheckpoint = Checkpoints::GetLastCheckpoint(GetParams().Checkpoints());
         if (fCheckPOW && pcheckpoint && block.nHeight <= (uint32_t)pcheckpoint->nHeight) {
            if (!CheckProofOfWork(block.GetHash(), block.nBits, consensusParams)) {
@@ -3963,7 +3963,7 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
     }
 
-    if (fCheckPOW && block.nTime >= nKAWPOWActivationTime) {
+    if (fCheckPOW && IsKAWPOWActivated(block.nHeight)) {
         if (mix_hash != block.mix_hash) {
             return state.DoS(50, false, REJECT_INVALID, "invalid-mix-hash", false, "mix_hash validity failed");
         }
@@ -4122,6 +4122,13 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
 {
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
+
+    if (IsKAWPOWActivated(static_cast<uint32_t>(nHeight))) {
+        if (block.nHeight != static_cast<uint32_t>(nHeight))
+            return state.DoS(100, false, REJECT_INVALID, "bad-kawpow-height", false, "kawpow block height mismatch");
+    } else if (IsKAWPOWActivated(block.nHeight)) {
+        return state.DoS(100, false, REJECT_INVALID, "early-kawpow", false, "kawpow before activation height");
+    }
 
     //If this is a reorg, check that it is not too deep
     int nMaxReorgDepth = gArgs.GetArg("-maxreorg", GetParams().MaxReorganizationDepth());

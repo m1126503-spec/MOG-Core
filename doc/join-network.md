@@ -14,7 +14,9 @@ MOG is not discovered automatically. Until DNS seeds are published, every node n
 | Программы | `mogd` (нода), `mog-cli` (команды) |
 | Генезис | текст `MOG Chain Genesis - 2026-10-28`; корень Меркла `98e63749…7a7e76` |
 
-CI после сборки запускает `contrib/mog-genesis-check.sh`. Скрипт поднимает `mogd` на main, testnet и regtest. Если хеш генезиса не совпадёт, процесс падает на `assert` и сборка красная.
+CI после сборки запускает `contrib/mog-genesis-check.sh`. Скрипт поднимает `mogd` на main, testnet и regtest и ждёт строку `Loaded best chain`. Если генезис не подключается, сборка красная.
+
+Первые 1000 блоков (высоты 0–999) считаются алгоритмом X16R. С блока 1000 включается KAWPOW. Время блока на это больше не влияет: старая дата Raven (май 2020) больше не переключает алгоритм.
 
 ## Собрать ноду с кошельком
 
@@ -37,17 +39,17 @@ cp share/examples/mog.conf ~/.mog/mog.conf
 ./src/mogd -printtoconsole
 ```
 
-Откройте входящий TCP `9766`. Одной ноды достаточно, чтобы появился первый блок: ожидание пиров в майнере сейчас сразу выходит из цикла.
+Откройте входящий TCP `9766`. Одной ноды достаточно, чтобы появился первый блок.
 
-В другом окне:
+Майнер встроен в `mogd` и работает на X16R, пока высота меньше 1000. Нужна сборка с кошельком. В `mog.conf` можно раскомментировать `gen=1`, либо при запущенной ноде:
 
 ```sh
 ./src/mog-cli getnewaddress
-./src/mog-cli generatetoaddress 1 "АДРЕС_ИЗ_ПРЕДЫДУЩЕЙ_КОМАНДЫ"
+contrib/mog-miner.sh 1
 ./src/mog-cli getblockcount
 ```
 
-`getblockcount` должен стать `1` или больше.
+`contrib/mog-miner.sh` вызывает `setgenerate`. `getblockcount` должен стать `1` или больше. С блока 1000 тот же майнер переключается на KAWPOW и крутит `nNonce64`, а не обычный nonce.
 
 ## Подключить других людей
 
