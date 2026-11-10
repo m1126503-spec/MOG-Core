@@ -1,3 +1,11 @@
-Releases have been moved to:
+Готовых сборок MOG пока нет.
 
-https://github.com/RavenProject/Ravencoin/releases/latest
+Не скачивайте бинарники других проектов: они не подключатся к этой сети.
+
+Соберите ноду из исходников этого репозитория:
+
+- запуск — [doc/join-network.md](../doc/join-network.md)
+- Linux — [doc/build-ubuntu.md](../doc/build-ubuntu.md)
+- Windows — [doc/build-windows.md](../doc/build-windows.md)
+
+Проверенные файлы, когда они появятся, будут в Releases этого репозитория.
